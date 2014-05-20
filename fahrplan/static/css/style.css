@@ -1,0 +1,14 @@
+html,
+body {
+    background-color: #abcabc;
+}
+
+/* Login Page */
+
+.login-panel {
+    margin-top: 25%;
+}
+
+.navbar-header img {
+    margin-top: -5px;
+}
