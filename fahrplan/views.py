@@ -1,6 +1,6 @@
 from django.core.serializers.json import DjangoJSONEncoder
 import json
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
@@ -16,10 +16,11 @@ def index(request):
         return render_to_response('index.html', {}, RequestContext(request))
 
 @csrf_exempt
-def login(request):
-    username = request.POST.get('user', '')
-    password = request.POST.get('pass', '')
+def user_login(request):
+    username = request.GET.get('user', '')
+    password = request.GET.get('pass', '')
     user = authenticate(username=username, password=password)
+    print request
 
     if user is not None:
         if user.is_active:
