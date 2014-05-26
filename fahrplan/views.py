@@ -30,7 +30,7 @@ def user_login(request):
         return answer({'success': False})
 
 @csrf_exempt
-def logoutUser(request):
+def user_logout(request):
     if request.user.is_authenticated():
         logout(request=request)
 

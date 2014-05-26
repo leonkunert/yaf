@@ -20,6 +20,9 @@ angular.module('yaf.factories', [])
                     pass:user.password
                 }
             });
+        },
+        'logout': function () {
+            return $http.post("/logout");
         }
     }
 })
