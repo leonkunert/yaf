@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 </head>
-<body data-ng-controller="main">
+<body data-ng-controller="rootCtrl">
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,47 +21,31 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img width="100" src="/static/img/yaf.png" /></a>
+                <a class="navbar-brand" href="/"><img width="100" src="/static/img/yaf.png" /></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Fahrplan</a></li>
+                    <li class="active"><a href="/">Fahrplan</a></li>
                     <li><a href="#">Link</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" data-ng-click="logout()">Logout</a></li>
+                    <li><a href="/anmelden">Login</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <form name="fahrplan" role="form">
-                    <div class="row">
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <label for="start_haltestelle">Start Haltestelle</label>
-                            <input type="text" class="form-control" id="start_haltestelle" />
-                        </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <label for="start_fahrzeit">Start Fahrzeit</label>
-                            <input type="time" name="start_fahrzeit" placeholder="HH:mm" min="06:00" max="00:00" data-ng-model="start_fahrzeit" class="form-control" id="start_fahrzeit" />
-                            <tt<{% verbatim %}$valid = {{fahrplan.start_fahrzeit.$valid}}{% endverbatim %}</tt><br/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="container" >
+        <div class="row" ng-view></div>
     </div>
 
     <script type="text/javascript" src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bower_components/momentjs/min/moment.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="/static/bower_components/angular-route/angular-route.min.js"></script>
-    <script type="text/javascript" src="/static/bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
     <script type="text/javascript" src="/static/js/app.js"></script>
     <script type="text/javascript" src="/static/js/controllers.js"></script>
     <script type="text/javascript" src="/static/js/factories.js"></script>

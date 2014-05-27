@@ -23,6 +23,9 @@ angular.module('yaf.factories', [])
         },
         'logout': function () {
             return $http.post("/logout");
+        },
+        'status': function () {
+            return $http.get("/userStatus");
         }
     }
 })
