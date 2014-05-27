@@ -9,7 +9,11 @@ from fahrplan.models import *
 
 
 @csrf_exempt
-def index(request):
+def fahrplan(request):
+    return render_to_response('index.html', {}, RequestContext(request))
+
+@csrf_exempt
+def login_page(request):
     if not request.user.is_authenticated():
         return render_to_response('login.html', {}, RequestContext(request))
     else:
@@ -37,13 +41,11 @@ def user_logout(request):
     return answer({'success': True})
 
 @csrf_exempt
-def autocomplete(request):
-    userInput = request.POST.get('haltestelle', '')
+def getHaltestellen(request):
     haltestellen = []
 
     for hs in Haltestelle.objects.all():
-        if userInput.lower() in hs.name.lower():
-            haltestellen.append(hs.name)
+        haltestellen.append(hs.name)
 
     return answer(haltestellen)
 

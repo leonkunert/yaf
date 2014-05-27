@@ -29,8 +29,8 @@ angular.module('yaf.factories', [])
 
 .factory('haltestellenFactory', function($http) {
     return {
-        'autocomplete': function (string) {
-            return $http.post('/autocomplete', {haltestelle: string});
+        'get_haltestellen': function () {
+            return $http.post('/haltestellen');
         }
     };
 });

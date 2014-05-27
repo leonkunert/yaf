@@ -1,7 +1,9 @@
 'use strict';
 angular.module('yaf', [
     'yaf.controllers',
-    'yaf.factories'
+    'yaf.factories',
+    'ngRoute',
+    'ngAutocomplete'
 ])
 
 .config(function ($locationProvider) {

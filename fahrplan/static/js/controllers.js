@@ -3,7 +3,7 @@ angular.module('yaf.controllers', [])
 
 .controller('main', function($scope, $location, $rootScope, fahrplanFactory, haltestellenFactory, userFactory) {
     $scope.start_fahrzeit = new Date(0,0,0,13,37,0,0).toLocaleTimeString();
-    haltestellenFactory.autocomplete('')
+    haltestellenFactory.get_haltestellen()
         .success(function (data) {
             $scope.haltestellen = data;
             console.log(data);
@@ -11,10 +11,8 @@ angular.module('yaf.controllers', [])
     $scope.login = function () {
         userFactory.login($scope.user)
             .success(function (data) {
-                console.log('message');
                 if (data.success === true) {
                     $location.path("/");
-                    console.log('message');
                 }
             });
     };

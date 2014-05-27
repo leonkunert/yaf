@@ -4,8 +4,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'fahrplan.views.index', name='home'),
+    url(r'^$', 'fahrplan.views.fahrplan', name='home'),
     url(r'^login$', 'fahrplan.views.user_login', name='login'),
     url(r'^logout$', 'fahrplan.views.user_logout', name='logout'),
-    url(r'autocomplete', 'fahrplan.views.autocomplete', name='autocomplete')
+    url(r'^fahrplan$', 'fahrplan.views.fahrplan', name='fahrplan'),
+    url(r'^haltestellen$', 'fahrplan.views.getHaltestellen', name='autocomplete')
 )
