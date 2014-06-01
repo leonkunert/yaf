@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -80,7 +81,7 @@ class Fahrplan(models.Model):
 
 class Kurs(models.Model):
     id = models.AutoField(primary_key=True)
-    bus = models.ForeignKey(Bus)
+    bus = models.ForeignKey(Bus, db_column='bus')
     fahrer = models.ForeignKey(Busfahrer, db_column='fahrer')
     linie = models.ForeignKey(Linie, db_column='linie')
     wochentag = models.IntegerField()
@@ -102,3 +103,12 @@ class HaltestelleLinie(models.Model):
     class Meta:
         managed = False
         db_table = 'haltestelle-linie-mapping'
+
+
+class FahrerUserMap(models.Model):
+    id = models.AutoField(primary_key=True)
+    fahrer = models.ForeignKey(Busfahrer)
+    user = models.ForeignKey(User)
+
+    class Meta:
+        db_table = 'fahrer-user-map'

@@ -10,7 +10,8 @@ urlpatterns = patterns('',
     url(r'^userStatus$', 'fahrplan.views.user_status'),
     url(r'^haltestellen$', 'fahrplan.views.getHaltestellen'),
     url(r'^fahrtzeiten$', 'fahrplan.views.getFahrtzeiten'),
-    url(r'^abfahrtzeiten$', 'fahrplan.views.getAbfahrtzeiten'),
+    url(r'^abfahrtszeiten$', 'fahrplan.views.getAbfahrtszeiten'),
+    url(r'^dienstplan$', 'fahrplan.views.getDienstplan'),
     # else:
     url(r'^.*$', 'fahrplan.views.fahrplan')
 )

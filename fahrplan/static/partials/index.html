@@ -24,12 +24,40 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="panel col-lg-12" data-ng-repeat="(linie, haltestelle) in result">
-            <div class="panel-body">
-                {{linie}}
-                <ul>
-                    <li data-ng-repeat="halt in haltestelle">{{halt.name}} | {{halt.fahrtzeit}} {{halt}}</li>
-                </ul>
+        <div class="panel-group col-lg-12" id="accordion">
+            <div class="panel panel-default" data-ng-repeat="linie in abfahrtszeiten">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{linie.linie}}
+                    </h3>
+                </div>
+                <div class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <li data-ng-repeat="zeiten in linie.zeiten | filter: timeFilter">{{zeiten}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="panel-group col-lg-12" >
+            <div class="panel panel-default" data-ng-repeat="haltestelle in fahrtzeiten">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{haltestelle.linie}}
+                    </h3>
+                </div>
+                <div class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <li data-ng-repeat="halt in haltestelle.haltestellen">{{halt.name}} | {{halt.fahrtzeit}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

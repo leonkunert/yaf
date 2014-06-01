@@ -36,7 +36,17 @@ angular.module('yaf.factories', [])
             return $http.post('/haltestellen');
         },
         'get_fahrtzeiten': function (haltestelle) {
-            return $http({url: "/fahrtzeiten",
+            return $http({
+                url: "/fahrtzeiten",
+                method: "POST",
+                params: {
+                    haltestelle: haltestelle
+                }
+            });
+        },
+        'get_abfahrtszeiten': function (haltestelle) {
+            return $http({
+                url: "/abfahrtszeiten",
                 method: "POST",
                 params: {
                     haltestelle: haltestelle
