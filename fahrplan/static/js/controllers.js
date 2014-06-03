@@ -11,14 +11,24 @@ angular.module('yaf.controllers', [])
         });
 })
 
-.controller('mainCtrl', function($scope, $location, $rootScope, fahrplanFactory, haltestellenFactory, userFactory) {
-    $scope.start_fahrzeit = moment().format('hh:mm');
+.controller('mainCtrl', function($scope, $location, $rootScope, haltestellenFactory, userFactory) {
+    $scope.query = {
+        start_fahrzeit: moment().format('HH:mm')
+    };
     haltestellenFactory.get_haltestellen()
         .success(function (data) {
             $scope.haltestellen = data;
         });
     $scope.logout = function () {
         userFactory.logout()
+    }
+    $scope.fahrplanSuche = function (attr) {
+        console.log(attr);
+        haltestellenFactory.get_fahrtzeiten(attr.haltestelle)
+            .success(function (data) {
+                console.log(data);
+                $scope.result = data;
+            });
     }
 })
 

@@ -4,7 +4,7 @@ angular.module('yaf.factories', [])
 .factory('fahrplanFactory', function() {
     return {
         'get_farhplan': function (i) {
-            return 'Hallo '+i;
+            return 'Hallo ' + i;
         }
     };
 })
@@ -34,6 +34,14 @@ angular.module('yaf.factories', [])
     return {
         'get_haltestellen': function () {
             return $http.post('/haltestellen');
+        },
+        'get_fahrtzeiten': function (haltestelle) {
+            return $http({url: "/fahrtzeiten",
+                method: "POST",
+                params: {
+                    haltestelle: haltestelle
+                }
+            });
         }
     };
 });
