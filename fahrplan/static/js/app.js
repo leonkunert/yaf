@@ -2,7 +2,8 @@
 angular.module('yaf', [
     'yaf.controllers',
     'yaf.factories',
-    'ngRoute'
+    'ngRoute',
+    'ngSanitize'
 ])
 
 .config(function ($locationProvider, $routeProvider) {

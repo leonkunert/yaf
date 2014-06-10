@@ -135,6 +135,7 @@ def getDienstplan(request):
     ]
 
     if user is not None:
+        print FahrerUserMap
         busfahrer = FahrerUserMap.objects.get(user=user).fahrer
 
         personalKurs = []

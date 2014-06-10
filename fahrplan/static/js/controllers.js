@@ -1,15 +1,15 @@
 'use strict';
-angular.module('yaf.controllers', ['ngSanitize'])
+angular.module('yaf.controllers', [])
 
 .controller('rootCtrl', function($scope, $rootScope, userFactory) {
-    $scope.statusSwitch = '<li><a href="/anmelden">Anmelden</a></li>';
+    $scope.statusSwitch = '<li><a href="/anmelden">Anmelden <i class="fa fa-fw fa-sign-in fa-lg"></i></a></li>';
     userFactory.status()
         .success(function (data) {
             console.log(data);
             if (data !== 'false') {
-                $scope.statusSwitch = '<li><a href="/logout">Abmelden</a></li>';
-                $scope.user = data;
-                $scope.user.logedIn = true;
+                $scope.statusSwitch = '<li class="active"><a>Hallo '+data.username+'</a></li><li><a href="/plan">Dienstplan <i class="fa fa-fw fa-briefcase fa-lg"></i></a></li><li><a href="#" title="Abmelden">Abmelden <i class="fa fa-fw fa-sign-out fa-lg"></i></a></li>';
+                $rootScope.user = data;
+                $rootScope.user.logedIn = true;
             }
         });
     $scope.logout = function () {
@@ -23,8 +23,8 @@ angular.module('yaf.controllers', ['ngSanitize'])
     };
     $scope.timeFilter = function (zeit) {
         var date = moment().format('YYYY-MM-DD');
-        var now  = moment(date + ' ' + $scope.query.start_fahrzeit);
-        zeit     = moment(date + ' ' + zeit);
+        var now  = moment(date + ' ' + $scope.query.start_fahrzeit, 'YYYY-MM-DD hh:mm');
+        zeit     = moment(date + ' ' + zeit, 'YYYY-MM-DD hh:mm');
         return zeit.format('X') >= now.format('X');
     }
     haltestellenFactory.get_haltestellen()
@@ -49,11 +49,15 @@ angular.module('yaf.controllers', ['ngSanitize'])
     }
 })
 
-.controller('loginCtrl', function($scope, $location, userFactory) {
+.controller('loginCtrl', function($scope, $rootScope, $location, userFactory) {
+    if (typeof $rootScope.user !== 'undefined') {
+        $location.path('/plan')
+    }
     $scope.login = function () {
         userFactory.login($scope.user)
             .success(function (data) {
-                if (data === 'true') {
+                if (data !== 'false') {
+                    console.log('message');
                     $location.path('/plan');
                 }
             })
