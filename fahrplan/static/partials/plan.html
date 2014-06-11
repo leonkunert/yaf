@@ -1,5 +1,21 @@
 <div class="container">
     <div class="row">
-        <div>{{message}} {{user.username}}</div>
+        <div class="panel-group col-lg-12" id="accordion">
+            <div class="panel panel-default" data-ng-repeat="dienst in dienstplan">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Schicht {{dienst.schicht}}
+                    </h3>
+                </div>
+                <div class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <p>Dienstbeginn: {{dienst.dienstbeginn}} {{dienst.wochentag}}</p>
+                        <p>Dienstschluss: {{dienst.dienstschluss}} {{dienst.wochentag}}</p>
+                        <p>Linie: {{dienst.linie}}</p>
+                        <p>Bus: {{dienst.bus}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

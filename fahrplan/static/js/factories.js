@@ -26,6 +26,9 @@ angular.module('yaf.factories', [])
         },
         'status': function () {
             return $http.get("/userStatus");
+        },
+        'get_dienstplan': function () {
+            return $http.post("/dienstplan")
         }
     }
 })

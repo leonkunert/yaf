@@ -2,12 +2,12 @@
 angular.module('yaf.controllers', [])
 
 .controller('rootCtrl', function($scope, $rootScope, userFactory) {
-    $scope.statusSwitch = '<li><a href="/anmelden">Anmelden <i class="fa fa-fw fa-sign-in fa-lg"></i></a></li>';
+    $rootScope.statusSwitch = '<li><a href="/anmelden">Anmelden <i class="fa fa-fw fa-sign-in fa-lg"></i></a></li>';
     userFactory.status()
         .success(function (data) {
             console.log(data);
             if (data !== 'false') {
-                $scope.statusSwitch = '<li class="active"><a>Hallo '+data.username+'</a></li><li><a href="/plan">Dienstplan <i class="fa fa-fw fa-briefcase fa-lg"></i></a></li><li><a href="#" title="Abmelden">Abmelden <i class="fa fa-fw fa-sign-out fa-lg"></i></a></li>';
+                $rootScope.statusSwitch = '<li class="active"><a>Hallo '+data.username+'</a></li><li><a href="/plan">Dienstplan <i class="fa fa-fw fa-briefcase fa-lg"></i></a></li><li><a href="#" title="Abmelden">Abmelden <i class="fa fa-fw fa-sign-out fa-lg"></i></a></li>';
                 $rootScope.user = data;
                 $rootScope.user.logedIn = true;
             }
@@ -57,7 +57,8 @@ angular.module('yaf.controllers', [])
         userFactory.login($scope.user)
             .success(function (data) {
                 if (data !== 'false') {
-                    console.log('message');
+                    $rootScope.user = data;
+                    $rootScope.statusSwitch = '<li class="active"><a>Hallo '+data.username+'</a></li><li><a href="/plan">Dienstplan <i class="fa fa-fw fa-briefcase fa-lg"></i></a></li><li><a href="#" title="Abmelden">Abmelden <i class="fa fa-fw fa-sign-out fa-lg"></i></a></li>';
                     $location.path('/plan');
                 }
             })
@@ -68,5 +69,10 @@ angular.module('yaf.controllers', [])
     if (typeof $rootScope.user === 'undefined') {
         $location.path('/anmelden')
     }
-    $scope.message = 'hi';
+    userFactory.get_dienstplan()
+        .success(function (data) {
+            $scope.dienstplan = data;
+            console.log(data);
+        })
+    $scope.message = 'Hallo';
 });

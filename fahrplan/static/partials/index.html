@@ -53,9 +53,16 @@
                 </div>
                 <div class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <ul>
-                            <li data-ng-repeat="halt in haltestelle.haltestellen">{{halt.name}} | {{halt.fahrtzeit}}</li>
-                        </ul>
+                        <table class="table">
+                            <tr>
+                                <th>Haltestelle</th>
+                                <th>Zeit bis Haltestelle</th>
+                            </tr>
+                            <tr data-ng-repeat="halt in haltestelle.haltestellen">
+                                <td>{{halt.name}}</td>
+                                <td>{{halt.fahrtzeit}}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
